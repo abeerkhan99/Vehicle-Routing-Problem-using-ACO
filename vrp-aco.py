@@ -58,7 +58,7 @@ class ACO:
             t.append(best_path)
 
         overall_best = sorted(t, key = lambda x: x[1])[0]
-        print(overall_best[-1])
+        print("Best distance so far:", overall_best[-1])
 
     def make_adj_list(self):
         nodes = {}
