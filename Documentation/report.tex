@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+%  Ted Pavlic (http://www.tedpavlic.com)
+% Modified by:
+%  Joe Del Rocco (https://joe.delrocco.org)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%  PACKAGES AND CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\documentclass[fleqn]{article}
+\usepackage{geometry}
+\usepackage{fancyhdr} % For custom headers
+\usepackage{lastpage} % To determine the last page for the footer
+\usepackage{extramarks} % For headers and footers
+\usepackage[most]{tcolorbox} % For problem answer sections
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % For inserting images
+\usepackage{xcolor} % For link coloring
+\usepackage[hidelinks]{hyperref} % For URL links (no box or color name)
+\usepackage{biblatex}
+
+
+% Margins
+\geometry{
+a4paper,
+tmargin=1in,
+bmargin=1in,
+lmargin=1in,
+rmargin=1in,
+textwidth=6.5in,
+textheight=9.0in,
+headsep=0.25in
+}
+
+% Header and footer
+\pagestyle{fancy}
+\lhead{} % Top left header
+\lhead{\myCourse: \myAssignment} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+% Other configurations
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\setlength\parskip{1pt} % Ensures paragraphs are still recognizable as such
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\setcounter{tocdepth}{3} % Sets depth of table of contents
+\linespread{1.1}
+
+% Template values
+\newcommand{\myLogo}{hu-logo.jpg}
+\newcommand{\myName}{Abeer Khan}
+\newcommand{\myJobTitle}{ak05419}
+\newcommand{\myCompany}{Habib University}
+\newcommand{\myCourse}{CS 451 - Computational Intelligence}
+\newcommand{\mySection}{Spring 2022}
+\newcommand{\myTeacher}{}
+\newcommand{\myAssignment}{Vehicle Routing Problem using ACO}
+\newcommand{\myDueDate}{Saturday,\ March\ 19,\ 2022}
+
+%----------------------------------------------------------------------------------------
+%  DOCUMENT STRUCTURE (MACROS & ENVIRONMENTS)
+%----------------------------------------------------------------------------------------
+
+% Colored links macro
+\newcommand{\hrefcol}[3] {\href{#1}{\textcolor{#3}{#2}}}
+
+% Creates a counter to keep track of the number of problems
+\newcounter{homeworkProblemCounter}
+
+% Macro for custom title page signature header
+\newsavebox{\myTitleSignature}
+\sbox{\myTitleSignature}{%
+\begin{tabular*}{\textwidth}{@{}l@{}|@{\extracolsep{0.125in}}l@{}}%
+\parbox{4.25in}{\raggedright{\includegraphics{\myLogo}}} &
+\parbox[c][]{2.5in}{{\textbf{\myName} \par}
+                    {\small \myJobTitle \par}
+                    {\small \myCompany \par}
+                    {\small \myLocation \par}
+                    {\small \hrefcol{https://\myURL}{\myURL}{blue} \par}
+                    {\small \hrefcol{mailto:\myEmail}{\myEmail}{blue}} \par}
+\end{tabular*}}
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{%
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{%
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+\nobreak\extramarks{#1}{}\nobreak%
+}
+
+\newcommand{\homeworkProblemName}{} % Argument = name of problem; default = "Problem #"
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{%
+\stepcounter{homeworkProblemCounter}% % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1}% % Assign \homeworkProblemName the argument
+\section{\homeworkProblemName}% % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName}% % Header and footer within environment
+}{%
+\exitProblemHeader{\homeworkProblemName}% % Header and footer after environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\begin{tcolorbox}[breakable,enhanced,colback=gray!5!white,title=Answer]%
+#1
+\end{tcolorbox}%
+% Alternative - Makes the box around the problem answer and puts the content inside
+%\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}}
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{% % For sections w/in problems; Argument = name of section (no default)
+\renewcommand{\homeworkSectionName}{#1}% % Assign \homeworkSectionName the argument
+\subsection{\homeworkSectionName}% % Make a subsection with the name of the subsection
+% \enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]}% % Header and footer within environment
+% }{%
+\enterProblemHeader{\homeworkProblemName}% % Header and footer after environment
+}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+% \renewcommand\refname{}
+\begin{document}
+
+
+% Blank out the traditional title page
+\title{\vspace{-1in}} % no title name
+\author{} % no author name
+\date{} % no date listed
+\maketitle % makes this a title page
+
+% Use custom title macro instead
+\usebox{\myTitleSignature}
+\vspace{1in} % spacing below title header
+
+% Assignment title
+{\centering \huge \myAssignment \par}
+{\centering \noindent\rule{4in}{0.1pt} \par}
+\vspace{0.05in}
+{\centering \myCourse~: \mySection~ \par}
+{\centering \myDueDate \par}
+%{\centering Prepared w/ \LaTeX \par}
+\vspace{1in}
+
+% Table of Contents
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+%\begin{homeworkProblem}[Exercise \#\arabic{homeworkProblemCounter}] % Use for custom section title
+\begin{homeworkProblem}{}
+
+
+%-----------------------------------------------
+
+%\begin{homeworkSection}{\homeworkProblemName:~(a)} % Use for repeating problem name
+\begin{homeworkSection}{Vehicle Routing Problem: Problem Formulation}
+The vehicle routing problem is a combinatorial optimization problem that aims to find a set of optimal distinct paths for multiple vehicles travelling a set of given locations, such that each location is visited only ONCE by one vehicle. Each vehicle starts from a depot node, and returns back to the same node after visiting a set of locations once its capacity becomes equal to zero. It is an extension of the Travelling Salesman Problem which was about finding the minimum total distance for one vehicle to travel a set of given locations and return back. 
+\\
+\\
+Using ant colony optimization, n number of artificial ants will stochastically construct n number of solutions which will be then compared and the pheromone trails will be updated accordingly. This process will continue for k number of iterations. In the end, the minimum total distance of a set of paths will be printed. Each ant will stochastically select the next location to visit using a probability function, which is based on the distance between the current location and the next possible location, and the intensity of the pheromone level. Each ant will visit each location ONCE, and its solution will be a list of distinct paths and its total distance ([[list of paths], total distance]). This is continued for a period of time, based on the parameters specified, and the best smallest distance found so far would be the output.
+\\
+\\
+The algorithm is implemented using a Python class. It is implemented in the following way: \par
+
+For some number of iterations and ants:  \par
+a) Each ant will construct a solution, such that each location is visited EXACTLY once, using a probability function. \par
+b) Once each ant constructs a solution, the pheromone trails will be updated accordingly. \cite{2} \par
+c) After all the ants have constructed solutions in the k$^{th}$ iteration, the best ant solution (minimum distance) will be used to update the pheromone trails accordingly. \par
+
+
+\end{homeworkSection}
+
+%-----------------------------------------------
+
+\begin{homeworkSection}{Chromosome Representation}
+In our population, a chromosome for this problem would represent the list of paths each ant would produce by visiting each location exactly once. Each location in our data collection sets has its set of x and y co-ordinates. To calculate the distance between the two locations, we apply the Euclidean distance formula. \par
+\end{homeworkSection}
+
+%-----------------------------------------------
+
+\begin{homeworkSection}{Fitness Function}
+The fitness function determines the total distance between each destination in each chromosome in the population. The fitness value of the chromosome will be considered high, if the total distance of the chromosome is small. As the value of the total distance grows smaller, the fitness value of the chromosome increases. High fitness values lead to the increasing of pheromone levels according to the trails created in the good solutions so that the artificial ants can move to these regions and further find better sets of paths. \par
+\end{homeworkSection}
+
+
+
+%-----------------------------------------------
+
+\begin{homeworkSection}{Parameters Used}
+The following parameters are implemented in our program with some constant values that ensure fair comparison between all iterations of our algorithm. They can be changed to observe the behavior of our algorithm:\\
+\begin{itemize}
+    \item Number of ants: $10$
+    \item Number of iterations/generations: $100$
+    \item $\alpha$: $4$
+    \item $\beta$: $10$
+    \item $\rho$: 0.6
+    \item Q: 1
+\end{itemize}\par
+\end{homeworkSection}
+
+%-----------------------------------------------
+\begin{homeworkSection}{Results: Worst vs. Final}
+We repeated the ACO process for the following instances respectively:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|} 
+ \hline
+ Filename & Number of Locations & Number of Vehicles & Capacity & Worst Distance & Best Distance \\ [0.5ex] 
+ \hline
+ A-n32-k05 & 32 & 5 & 100 & 1686 & 870 \\ 
+ \hline
+ A-n44-k06 & 44 & 6 & 100 & 2131 & 982 \\
+ \hline
+ A-n60-k09 & 60 & 9 & 100 & 3644 & 1465 \\
+ \hline
+ A-n80-k10 & 80 & 10 & 100 & 4389 & 1980 
+ \\  \hline
+\end{tabular}
+\end{center}
+
+\end{homeworkSection}
+
+%-----------------------------------------------
+%-----------------------------------------------
+\newpage
+\begin{homeworkSection}{References}
+\renewcommand{\section}[2]{}%
+
+\begin{thebibliography}{00}
+\printbibliography[heading=none]
+\bibitem{b1}Lolik-Bolik. “Lolik-Bolik/Vehicle-Routing-Problem: Repository for Solving the Vehicle Routing Problem (VRP) with Ant Colony Algorithm.” GitHub, https://github.com/Lolik-Bolik/Vehicle-Routing-Problem. 
+
+\bibitem{b2}J. E. Bell and P. R. McMullen, “Ant colony optimization techniques for the vehicle routing problem,” Advanced Engineering Informatics, vol. 18, no. 1, pp. 41–48, 2004. 
+
+\bibitem{b3}W. A. Othman, A. A. Abd Wahab, S. S. N. Alhady, and H. N. Wong, “Solving vehicle routing problem using ant colony optimisation (ACO) algorithm,” International Journal of Research and Engineering, vol. 5, no. 9, pp. 500–507, 2018. 
+\end{thebibliography}
+
+\end{homeworkSection}
+\end{homeworkProblem}
+\newpage
+%----------------------------------------------------------------------------------------
+\end{document}
+%----------------------------------------------------------------------------------------
+%	DONE
+%----------------------------------------------------------------------------------------
