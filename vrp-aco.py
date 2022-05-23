@@ -162,7 +162,7 @@ class ACO:
         return pheromone
 
 if __name__ == '__main__':
-    aco_algo = ACO(4,10, 0.6, 1, "A-n80-k10.xml", 250, 10)
+    aco_algo = ACO(4,10, 0.6, 1, "Dataset/A-n80-k10.xml", 250, 10)
     aco_algo.aco()
 
 
